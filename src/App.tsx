@@ -4,6 +4,7 @@ import {AppBar, Grid, Paper, Toolbar, Typography} from "@mui/material";
 import SearchAndResults from "./SearchAndResults";
 import {Company} from "./api/AltanaApiClient";
 import CompanySupplierGraph from "./CompanySupplierGraph";
+import SupplierList from "./SupplierList";
 
 function App() {
     const [currentCompany, setCurrentCompany] = React.useState<Company | null>(null);
@@ -37,7 +38,7 @@ function App() {
                 </Grid>
                 <Grid item xs={3}>
                     <Paper variant="outlined" style={{margin: 4, padding: 4}}>
-                        <p>3</p>
+                        <SupplierList supplierId={supplier} />
                     </Paper>
                 </Grid>
             </Grid>
