@@ -38,12 +38,12 @@ function App() {
                 </Grid>
                 <Grid item xs={3}>
                     <Paper variant="outlined" style={{margin: 4, padding: 4}}>
-                        <SupplierList supplierId={supplier} />
+                        <SupplierList supplierId={supplier}/>
                     </Paper>
                 </Grid>
             </Grid>
         </>
-)
+    );
 }
 
 export default App;

@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Altana Interview - Jon Nahum
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+Please make sure to have Node.js (version 16) installed on your machine for development. Once you clone the repository, run `npm install`. Then you can follow the instructions of Create React App below:
 
 ## Available Scripts
 
