@@ -11,9 +11,13 @@ import {
     TableHead,
     TableRow
 } from "@mui/material";
-import {Companies} from "./api/AltanaApiClient";
+import {Companies, Company} from "./api/AltanaApiClient";
 
-function SearchAndResults(): JSX.Element {
+type SearchAndResultsProps = {
+    onCurrentCompanySelected: (c: Company | null) => void;
+}
+
+function SearchAndResults({onCurrentCompanySelected}: SearchAndResultsProps): JSX.Element {
     const api = React.useContext(CompanyApiContext);
     const [searchTerm, setSearchTerm] = React.useState('');
     const [isLoading, setIsLoading] = React.useState(false);
@@ -32,8 +36,12 @@ function SearchAndResults(): JSX.Element {
 
     const onSearchTermChange: FocusEventHandler<HTMLInputElement> = (e) => {
         e.preventDefault();
-        setSearchTerm(e.target.value);
-        setSearchResults(null);
+        const newTerm = e.target.value;
+        if (newTerm !== searchTerm) {
+            setSearchTerm(newTerm);
+            onCurrentCompanySelected(null);
+            setSearchResults(null);
+        }
     };
 
     return (
@@ -55,7 +63,7 @@ function SearchAndResults(): JSX.Element {
                             {searchResults.companies?.map(c => (
                                 <TableRow key={c.altana_canon_id}
                                           sx={{'&:last-child td, &:last-child th': {border: 0}}}
-                                          onClick={() => {}}>
+                                          onClick={() => onCurrentCompanySelected(c)}>
                                     <TableCell>{c.company_name}</TableCell>
                                 </TableRow>
                             ))}

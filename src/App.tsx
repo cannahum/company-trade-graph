@@ -1,17 +1,22 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './index.css';
 import {AppBar, Grid, Paper, Toolbar, Typography} from "@mui/material";
 import SearchAndResults from "./SearchAndResults";
-import CompanyApiContext from "./CompanyApiContext";
-import {CompanyApi} from "./api/AltanaApiClient";
+import {Company} from "./api/AltanaApiClient";
+import CompanySupplierGraph from "./CompanySupplierGraph";
 
 function App() {
-    const companyApi = new CompanyApi({
-        apiKey: 'MTpJbnRlcnZpZXclMjAyMDIxLTA5LTIyOjE2MzIzNTk2NTU6NWNhMzViYjk.ZmEwZWI5OTdmYWJjYWFlZWJmY2YyNGYyN2FkMmQ5YzkwODQ4NWNiYg',
-    });
+    const [currentCompany, setCurrentCompany] = React.useState<Company | null>(null);
+    const [supplier, setSupplier] = React.useState<string | null>(null);
+
+    useEffect(() => {
+        if (currentCompany === null) {
+            setSupplier(null);
+        }
+    }, [currentCompany]);
 
     return (
-        <CompanyApiContext.Provider value={companyApi}>
+        <>
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
@@ -22,12 +27,12 @@ function App() {
             <Grid container spacing={1}>
                 <Grid item xs={3}>
                     <Paper variant="outlined" style={{margin: 4, padding: 4}}>
-                        <SearchAndResults/>
+                        <SearchAndResults onCurrentCompanySelected={setCurrentCompany}/>
                     </Paper>
                 </Grid>
                 <Grid item xs={6}>
                     <Paper variant="outlined" style={{margin: 4, padding: 4}}>
-                        <p>2</p>
+                        <CompanySupplierGraph company={currentCompany} onSupplierSelected={setSupplier}/>
                     </Paper>
                 </Grid>
                 <Grid item xs={3}>
@@ -36,8 +41,8 @@ function App() {
                     </Paper>
                 </Grid>
             </Grid>
-        </CompanyApiContext.Provider>
-    );
+        </>
+)
 }
 
 export default App;
