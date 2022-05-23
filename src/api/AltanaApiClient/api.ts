@@ -56,11 +56,9 @@ export interface FetchArgs {
 export class BaseAPI {
     protected configuration: Configuration;
 
-    constructor(configuration?: Configuration, protected basePath: string = BASE_PATH, protected fetch: FetchAPI = isomorphicFetch) {
-        if (configuration) {
-            this.configuration = configuration;
-            this.basePath = configuration.basePath || this.basePath;
-        }
+    constructor(configuration: Configuration, protected basePath: string = BASE_PATH, protected fetch: FetchAPI = isomorphicFetch) {
+        this.configuration = configuration;
+        this.basePath = configuration.basePath || this.basePath;
     }
 };
 
@@ -71,52 +69,52 @@ export class BaseAPI {
  * @extends {Error}
  */
 export class RequiredError extends Error {
-    name: "RequiredError"
+    name = "RequiredError"
     constructor(public field: string, msg?: string) {
         super(msg);
     }
 }
 
 /**
- * 
+ *
  * @export
  * @interface BaseEdge
  */
 export interface BaseEdge {
     /**
-     * 
+     *
      * @type {string}
      * @memberof BaseEdge
      */
     edge_canon_id?: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof BaseEdge
      */
     edge_type?: string;
 }
 /**
- * 
+ *
  * @export
  * @interface BaseRisk
  */
 export interface BaseRisk {
     /**
-     * 
+     *
      * @type {number}
      * @memberof BaseRisk
      */
     risk_score?: number;
     /**
-     * 
+     *
      * @type {string}
      * @memberof BaseRisk
      */
     risk_type?: string;
 }
 /**
- * 
+ *
  * @export
  * @interface Companies
  */
@@ -159,7 +157,7 @@ export interface Company {
      */
     altana_canon_id: string;
     /**
-     * 
+     *
      * @type {CompanyContext}
      * @memberof Company
      */
@@ -171,26 +169,26 @@ export interface Company {
      */
     company_name: string;
     /**
-     * 
+     *
      * @type {Array<string>}
      * @memberof Company
      */
     data_sources: Array<string>;
     /**
-     * 
+     *
      * @type {Array<Restriction>}
      * @memberof Company
      */
     restrictions: Array<Restriction>;
     /**
-     * 
+     *
      * @type {Array<Risk>}
      * @memberof Company
      */
     risks: Array<Risk>;
 }
 /**
- * 
+ *
  * @export
  * @interface CompanyContext
  */
@@ -263,26 +261,26 @@ export interface CompanyContext {
     trading_partners: Array<string>;
 }
 /**
- * 
+ *
  * @export
  * @interface Coordinates
  */
 export interface Coordinates {
     /**
-     * 
+     *
      * @type {number}
      * @memberof Coordinates
      */
     latitude?: number;
     /**
-     * 
+     *
      * @type {number}
      * @memberof Coordinates
      */
     longitude?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface DeclaredGoods
  */
@@ -313,76 +311,76 @@ export interface DeclaredGoods {
     value: number;
 }
 /**
- * 
+ *
  * @export
  * @interface Edge
  */
 export interface Edge {
 }
 /**
- * 
+ *
  * @export
  * @interface Edges
  */
 export interface Edges {
     /**
-     * 
+     *
      * @type {Array<Edge>}
      * @memberof Edges
      */
     edges?: Array<Edge>;
     /**
-     * 
+     *
      * @type {number}
      * @memberof Edges
      */
     num_results?: number;
     /**
-     * 
+     *
      * @type {number}
      * @memberof Edges
      */
     page_num?: number;
     /**
-     * 
+     *
      * @type {number}
      * @memberof Edges
      */
     page_size?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface Facilities
  */
 export interface Facilities {
     /**
-     * 
+     *
      * @type {Array<Facility>}
      * @memberof Facilities
      */
     facilities?: Array<Facility>;
     /**
-     * 
+     *
      * @type {number}
      * @memberof Facilities
      */
     num_results?: number;
     /**
-     * 
+     *
      * @type {number}
      * @memberof Facilities
      */
     page_num?: number;
     /**
-     * 
+     *
      * @type {number}
      * @memberof Facilities
      */
     page_size?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface Facility
  */
@@ -394,13 +392,13 @@ export interface Facility {
      */
     address?: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof Facility
      */
     address_cosine_similarity?: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof Facility
      */
@@ -412,7 +410,7 @@ export interface Facility {
      */
     company_canon_id?: string;
     /**
-     * 
+     *
      * @type {Array<ModelMetaData>}
      * @memberof Facility
      */
@@ -424,13 +422,13 @@ export interface Facility {
      */
     company_name?: string;
     /**
-     * 
+     *
      * @type {Coordinates}
      * @memberof Facility
      */
     coordinates?: Coordinates;
     /**
-     * 
+     *
      * @type {Array<string>}
      * @memberof Facility
      */
@@ -442,13 +440,13 @@ export interface Facility {
      */
     facility_canon_id?: string;
     /**
-     * 
+     *
      * @type {Array<ModelMetaData>}
      * @memberof Facility
      */
     geo_string_address_model_metadata?: Array<ModelMetaData>;
     /**
-     * 
+     *
      * @type {Array<GeoCoderMetaData>}
      * @memberof Facility
      */
@@ -502,7 +500,7 @@ export interface Facility {
      */
     receives_from_facility_ids?: Array<string>;
     /**
-     * 
+     *
      * @type {Array<Restriction>}
      * @memberof Facility
      */
@@ -514,44 +512,44 @@ export interface Facility {
      */
     sends_to_facility_ids?: Array<string>;
     /**
-     * 
+     *
      * @type {Array<ModelMetaData>}
      * @memberof Facility
      */
     string_address_model_metadata?: Array<ModelMetaData>;
 }
 /**
- * 
+ *
  * @export
  * @interface FacilityTradingPartners
  */
 export interface FacilityTradingPartners {
     /**
-     * 
+     *
      * @type {Array<Edge>}
      * @memberof FacilityTradingPartners
      */
     edges?: Array<Edge>;
     /**
-     * 
+     *
      * @type {Array<Facility>}
      * @memberof FacilityTradingPartners
      */
     facilities?: Array<Facility>;
     /**
-     * 
+     *
      * @type {number}
      * @memberof FacilityTradingPartners
      */
     num_results?: number;
     /**
-     * 
+     *
      * @type {number}
      * @memberof FacilityTradingPartners
      */
     page_num?: number;
     /**
-     * 
+     *
      * @type {number}
      * @memberof FacilityTradingPartners
      */
@@ -564,91 +562,91 @@ export interface FacilityTradingPartners {
  */
 export interface GeoCoderMetaData {
     /**
-     * 
+     *
      * @type {any}
      * @memberof GeoCoderMetaData
      */
     bbox_geojson_in?: any;
     /**
-     * 
+     *
      * @type {any}
      * @memberof GeoCoderMetaData
      */
     bbox_geojson_out?: any;
     /**
-     * 
+     *
      * @type {number}
      * @memberof GeoCoderMetaData
      */
     bbox_size_km2_in?: number;
     /**
-     * 
+     *
      * @type {number}
      * @memberof GeoCoderMetaData
      */
     bbox_size_km2_out?: number;
     /**
-     * 
+     *
      * @type {number}
      * @memberof GeoCoderMetaData
      */
     geo_confidence_in?: number;
     /**
-     * 
+     *
      * @type {number}
      * @memberof GeoCoderMetaData
      */
     geo_confidence_out?: number;
     /**
-     * 
+     *
      * @type {string}
      * @memberof GeoCoderMetaData
      */
     geo_level_in?: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof GeoCoderMetaData
      */
     geo_level_out?: string;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof GeoCoderMetaData
      */
     geocoder_metadata_bool?: boolean;
     /**
-     * 
+     *
      * @type {number}
      * @memberof GeoCoderMetaData
      */
     latitude_in?: number;
     /**
-     * 
+     *
      * @type {number}
      * @memberof GeoCoderMetaData
      */
     latitude_out?: number;
     /**
-     * 
+     *
      * @type {any}
      * @memberof GeoCoderMetaData
      */
     layer_properties_in?: any;
     /**
-     * 
+     *
      * @type {any}
      * @memberof GeoCoderMetaData
      */
     layer_properties_out?: any;
     /**
-     * 
+     *
      * @type {number}
      * @memberof GeoCoderMetaData
      */
     longitude_in?: number;
     /**
-     * 
+     *
      * @type {number}
      * @memberof GeoCoderMetaData
      */
@@ -674,7 +672,7 @@ export interface GoodsMeasure {
     value: number;
 }
 /**
- * 
+ *
  * @export
  * @interface HSMisclassificationRisk
  */
@@ -728,19 +726,19 @@ export interface HSMisclassificationRisk {
      */
     mean_predicted_confidence?: number;
     /**
-     * 
+     *
      * @type {Array<PredictedGoods>}
      * @memberof HSMisclassificationRisk
      */
     predicted?: Array<PredictedGoods>;
     /**
-     * 
+     *
      * @type {number}
      * @memberof HSMisclassificationRisk
      */
     risk_score?: number;
     /**
-     * 
+     *
      * @type {string}
      * @memberof HSMisclassificationRisk
      */
@@ -753,19 +751,19 @@ export interface HSMisclassificationRisk {
     top_predicted_confidence?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface InterFacilityEdge
  */
 export interface InterFacilityEdge extends BaseEdge {
     /**
-     * 
+     *
      * @type {Array<string>}
      * @memberof InterFacilityEdge
      */
     facility_canon_ids?: Array<string>;
     /**
-     * 
+     *
      * @type {Array<TradeRelationship>}
      * @memberof InterFacilityEdge
      */
@@ -778,49 +776,49 @@ export interface InterFacilityEdge extends BaseEdge {
  */
 export interface ModelMetaData {
     /**
-     * 
+     *
      * @type {number}
      * @memberof ModelMetaData
      */
     match_search_space?: number;
     /**
-     * 
+     *
      * @type {any}
      * @memberof ModelMetaData
      */
     model_artifact?: any;
     /**
-     * 
+     *
      * @type {any}
      * @memberof ModelMetaData
      */
     model_features?: any;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof ModelMetaData
      */
     model_metadata_bool?: boolean;
     /**
-     * 
+     *
      * @type {number}
      * @memberof ModelMetaData
      */
     page_size?: number;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof ModelMetaData
      */
     query_precleaned_indicator?: boolean;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ModelMetaData
      */
     temp_que_lower?: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ModelMetaData
      */
@@ -858,44 +856,44 @@ export interface Party {
     name: string;
 }
 /**
- * 
+ *
  * @export
  * @interface PredictedGoods
  */
 export interface PredictedGoods {
     /**
-     * 
+     *
      * @type {number}
      * @memberof PredictedGoods
      */
     amount_to_collect?: number;
     /**
-     * 
+     *
      * @type {number}
      * @memberof PredictedGoods
      */
     confidence?: number;
     /**
-     * 
+     *
      * @type {string}
      * @memberof PredictedGoods
      */
     hs_code?: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof PredictedGoods
      */
     hs_definition?: string;
     /**
-     * 
+     *
      * @type {Tariff}
      * @memberof PredictedGoods
      */
     tariff?: Tariff;
 }
 /**
- * 
+ *
  * @export
  * @interface Product
  */
@@ -926,83 +924,83 @@ export interface Product {
     product_canon_id?: string;
 }
 /**
- * 
+ *
  * @export
  * @interface Products
  */
 export interface Products {
     /**
-     * 
+     *
      * @type {number}
      * @memberof Products
      */
     num_results?: number;
     /**
-     * 
+     *
      * @type {number}
      * @memberof Products
      */
     page_num?: number;
     /**
-     * 
+     *
      * @type {number}
      * @memberof Products
      */
     page_size?: number;
     /**
-     * 
+     *
      * @type {Array<Product>}
      * @memberof Products
      */
     products?: Array<Product>;
 }
 /**
- * 
+ *
  * @export
  * @interface Restriction
  */
 export interface Restriction {
     /**
-     * 
+     *
      * @type {string}
      * @memberof Restriction
      */
     description?: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof Restriction
      */
     type?: string;
 }
 /**
- * 
+ *
  * @export
  * @interface Risk
  */
 export interface Risk {
 }
 /**
- * 
+ *
  * @export
  * @interface Status
  */
 export interface Status {
     /**
-     * 
+     *
      * @type {string}
      * @memberof Status
      */
     db_id?: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof Status
      */
     status?: string;
 }
 /**
- * 
+ *
  * @export
  * @interface Tariff
  */
@@ -1045,7 +1043,7 @@ export interface Tariff {
     spexc?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface TradeRelationship
  */
@@ -1063,25 +1061,25 @@ export interface TradeRelationship {
      */
     countries_of_origin?: Array<string>;
     /**
-     * 
+     *
      * @type {string}
      * @memberof TradeRelationship
      */
     exporter_canon_id?: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof TradeRelationship
      */
     exporter_company_canon_id?: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof TradeRelationship
      */
     exporter_company_name?: string;
     /**
-     * 
+     *
      * @type {Array<Restriction>}
      * @memberof TradeRelationship
      */
@@ -1093,25 +1091,25 @@ export interface TradeRelationship {
      */
     hs_traded?: Array<string>;
     /**
-     * 
+     *
      * @type {string}
      * @memberof TradeRelationship
      */
     importer_canon_id?: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof TradeRelationship
      */
     importer_company_canon_id?: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof TradeRelationship
      */
     importer_company_name?: string;
     /**
-     * 
+     *
      * @type {Array<Restriction>}
      * @memberof TradeRelationship
      */
@@ -1129,7 +1127,7 @@ export interface TradeRelationship {
      */
     number_records?: number;
     /**
-     * 
+     *
      * @type {Array<Risk>}
      * @memberof TradeRelationship
      */
@@ -1167,7 +1165,7 @@ export interface TradeRoute {
     port_of_origin: string;
 }
 /**
- * 
+ *
  * @export
  * @interface TradingPartnerEdge
  */
@@ -1185,25 +1183,25 @@ export interface TradingPartnerEdge extends BaseEdge {
      */
     countries_of_origin?: Array<string>;
     /**
-     * 
+     *
      * @type {string}
      * @memberof TradingPartnerEdge
      */
     exporter_canon_id?: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof TradingPartnerEdge
      */
     exporter_company_canon_id?: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof TradingPartnerEdge
      */
     exporter_company_name?: string;
     /**
-     * 
+     *
      * @type {Array<Restriction>}
      * @memberof TradingPartnerEdge
      */
@@ -1215,25 +1213,25 @@ export interface TradingPartnerEdge extends BaseEdge {
      */
     hs_traded?: Array<string>;
     /**
-     * 
+     *
      * @type {string}
      * @memberof TradingPartnerEdge
      */
     importer_canon_id?: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof TradingPartnerEdge
      */
     importer_company_canon_id?: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof TradingPartnerEdge
      */
     importer_company_name?: string;
     /**
-     * 
+     *
      * @type {Array<Restriction>}
      * @memberof TradingPartnerEdge
      */
@@ -1251,63 +1249,63 @@ export interface TradingPartnerEdge extends BaseEdge {
      */
     number_records?: number;
     /**
-     * 
+     *
      * @type {Array<Risk>}
      * @memberof TradingPartnerEdge
      */
     risks?: Array<Risk>;
 }
 /**
- * 
+ *
  * @export
  * @interface TradingPartners
  */
 export interface TradingPartners {
     /**
-     * 
+     *
      * @type {Array<Company>}
      * @memberof TradingPartners
      */
     companies?: Array<Company>;
     /**
-     * 
+     *
      * @type {Array<Edge>}
      * @memberof TradingPartners
      */
     edges?: Array<Edge>;
     /**
-     * 
+     *
      * @type {number}
      * @memberof TradingPartners
      */
     num_results?: number;
     /**
-     * 
+     *
      * @type {number}
      * @memberof TradingPartners
      */
     page_num?: number;
     /**
-     * 
+     *
      * @type {number}
      * @memberof TradingPartners
      */
     page_size?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface TradingPartnersEdge
  */
 export interface TradingPartnersEdge extends BaseEdge {
     /**
-     * 
+     *
      * @type {Array<string>}
      * @memberof TradingPartnersEdge
      */
     company_canon_ids?: Array<string>;
     /**
-     * 
+     *
      * @type {Array<TradeRelationship>}
      * @memberof TradingPartnersEdge
      */
@@ -1320,55 +1318,55 @@ export interface TradingPartnersEdge extends BaseEdge {
  */
 export interface TransactionRecord {
     /**
-     * 
+     *
      * @type {DeclaredGoods}
      * @memberof TransactionRecord
      */
     declared: DeclaredGoods;
     /**
-     * 
+     *
      * @type {Party}
      * @memberof TransactionRecord
      */
     exporter: Party;
     /**
-     * 
+     *
      * @type {string}
      * @memberof TransactionRecord
      */
     id: string;
     /**
-     * 
+     *
      * @type {Party}
      * @memberof TransactionRecord
      */
     importer: Party;
     /**
-     * 
+     *
      * @type {GoodsMeasure}
      * @memberof TransactionRecord
      */
     quantity: GoodsMeasure;
     /**
-     * 
+     *
      * @type {TradeRoute}
      * @memberof TransactionRecord
      */
     route: TradeRoute;
     /**
-     * 
+     *
      * @type {string}
      * @memberof TransactionRecord
      */
     trade_direction: TransactionRecord.TradeDirectionEnum;
     /**
-     * 
+     *
      * @type {Date}
      * @memberof TransactionRecord
      */
     transaction_date_time: Date;
     /**
-     * 
+     *
      * @type {GoodsMeasure}
      * @memberof TransactionRecord
      */
@@ -1390,13 +1388,13 @@ export namespace TransactionRecord {
     }
 }
 /**
- * 
+ *
  * @export
  * @interface TransactionRisk
  */
 export interface TransactionRisk {
     /**
-     * 
+     *
      * @type {Array<Risk>}
      * @memberof TransactionRisk
      */
@@ -1437,7 +1435,7 @@ export const CompanyApiFetchParamCreator = function (configuration?: Configurati
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            delete (localVarUrlObj as Partial<any>).search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
 
             return {
@@ -1477,11 +1475,11 @@ export const CompanyApiFetchParamCreator = function (configuration?: Configurati
             }
 
             if (edge_type) {
-                localVarQueryParameter['edge_type'] = edge_type.join(COLLECTION_FORMATS["pipe"]);
+                localVarQueryParameter['edge_type'] = edge_type.join(COLLECTION_FORMATS["pipes"]);
             }
 
             if (country) {
-                localVarQueryParameter['country'] = country.join(COLLECTION_FORMATS["pipe"]);
+                localVarQueryParameter['country'] = country.join(COLLECTION_FORMATS["pipes"]);
             }
 
             if (trade_direction !== undefined) {
@@ -1494,7 +1492,7 @@ export const CompanyApiFetchParamCreator = function (configuration?: Configurati
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            delete (localVarUrlObj as Partial<any>).search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
 
             return {
@@ -1536,7 +1534,7 @@ export const CompanyApiFetchParamCreator = function (configuration?: Configurati
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            delete (localVarUrlObj as Partial<any>).search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
 
             return {
@@ -1583,7 +1581,7 @@ export const CompanyApiFetchParamCreator = function (configuration?: Configurati
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            delete (localVarUrlObj as Partial<any>).search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
 
             return {
@@ -1625,7 +1623,7 @@ export const CompanyApiFetchParamCreator = function (configuration?: Configurati
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            delete (localVarUrlObj as Partial<any>).search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
 
             return {
@@ -1665,7 +1663,7 @@ export const CompanyApiFetchParamCreator = function (configuration?: Configurati
             }
 
             if (country) {
-                localVarQueryParameter['country'] = country.join(COLLECTION_FORMATS["pipe"]);
+                localVarQueryParameter['country'] = country.join(COLLECTION_FORMATS["pipes"]);
             }
 
             if (full_address !== undefined) {
@@ -1673,7 +1671,7 @@ export const CompanyApiFetchParamCreator = function (configuration?: Configurati
             }
 
             if (hs2) {
-                localVarQueryParameter['hs2'] = hs2.join(COLLECTION_FORMATS["pipe"]);
+                localVarQueryParameter['hs2'] = hs2.join(COLLECTION_FORMATS["pipes"]);
             }
 
             if (has_restrictions !== undefined) {
@@ -1682,7 +1680,7 @@ export const CompanyApiFetchParamCreator = function (configuration?: Configurati
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            delete (localVarUrlObj as Partial<any>).search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
 
             return {
@@ -1722,11 +1720,11 @@ export const CompanyApiFetchParamCreator = function (configuration?: Configurati
             }
 
             if (country) {
-                localVarQueryParameter['country'] = country.join(COLLECTION_FORMATS["pipe"]);
+                localVarQueryParameter['country'] = country.join(COLLECTION_FORMATS["pipes"]);
             }
 
             if (hs2) {
-                localVarQueryParameter['hs2'] = hs2.join(COLLECTION_FORMATS["pipe"]);
+                localVarQueryParameter['hs2'] = hs2.join(COLLECTION_FORMATS["pipes"]);
             }
 
             if (has_restrictions !== undefined) {
@@ -1739,7 +1737,7 @@ export const CompanyApiFetchParamCreator = function (configuration?: Configurati
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            delete (localVarUrlObj as Partial<any>).search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
 
             return {
@@ -2146,7 +2144,7 @@ export const FacilityApiFetchParamCreator = function (configuration?: Configurat
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            delete (localVarUrlObj as Partial<any>).search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
 
             return {
@@ -2193,7 +2191,7 @@ export const FacilityApiFetchParamCreator = function (configuration?: Configurat
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            delete (localVarUrlObj as Partial<any>).search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
 
             return {
@@ -2235,7 +2233,7 @@ export const FacilityApiFetchParamCreator = function (configuration?: Configurat
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            delete (localVarUrlObj as Partial<any>).search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
 
             return {
@@ -2284,7 +2282,7 @@ export const FacilityApiFetchParamCreator = function (configuration?: Configurat
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            delete (localVarUrlObj as Partial<any>).search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
 
             return {
@@ -2338,7 +2336,7 @@ export const FacilityApiFetchParamCreator = function (configuration?: Configurat
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            delete (localVarUrlObj as Partial<any>).search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
 
             return {
@@ -2633,7 +2631,7 @@ export const ProductApiFetchParamCreator = function (configuration?: Configurati
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            delete (localVarUrlObj as Partial<any>).search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
 
             return {
@@ -2680,7 +2678,7 @@ export const ProductApiFetchParamCreator = function (configuration?: Configurati
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            delete (localVarUrlObj as Partial<any>).search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
 
             return {
@@ -2727,7 +2725,7 @@ export const ProductApiFetchParamCreator = function (configuration?: Configurati
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            delete (localVarUrlObj as Partial<any>).search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
 
             return {
@@ -2927,7 +2925,7 @@ export const StatusApiFetchParamCreator = function (configuration?: Configuratio
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            delete (localVarUrlObj as Partial<any>).search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
 
             return {
@@ -3031,7 +3029,7 @@ export const TransactionApiFetchParamCreator = function (configuration?: Configu
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            delete (localVarUrlObj as Partial<any>).search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             const needsSerialization = (<any>"TransactionRecord" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body || {}) : (body || "");
